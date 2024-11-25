@@ -1,0 +1,41 @@
+# Model Configuration
+model:
+  name: "meta-llama/Llama-3.2-1B-Instruct"
+  device: "4"  # GPU device number
+
+# LoRA Configuration
+lora:
+  r: 8
+  alpha: 32
+  target_modules: ["q_proj", "v_proj"]
+  dropout: 0.1
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+# Training Configuration
+training:
+  batch_size: 16
+  learning_rate: 2.0e-5
+  max_seq_length: 512
+  num_epochs: 1
+  weight_decay: 0.01
+  fp16: true
+
+# Checkpointing
+checkpoint:
+  save_steps: 500
+  eval_steps: 500
+  save_total_limit: 2
+  logging_steps: 100
+
+# Data Configuration
+data:
+  train_path: "../arxiv-dataset/train.txt"
+  val_path: "../arxiv-dataset/val.txt"
+  num_workers: 8
+  prefetch_factor: 8
+
+# Output Configuration
+output:
+  base_dir: "./llama_finetuned"
+  log_file: "training.log"

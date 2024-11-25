@@ -1,7 +1,10 @@
 # Files
-*zip
+*.zip
+exp.py
+*.log
 
 # Folders
+__pycache__
+logs
 arxiv-dataset/
 scisummnet**
-__pycache__
