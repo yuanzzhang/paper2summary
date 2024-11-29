@@ -1,10 +1,12 @@
 # Files
 *.zip
-exp.py
+exp*.**
 *.log
+quickstart_peft_finetuning.ipynb
 
 # Folders
 __pycache__
-logs
-arxiv-dataset/
 scisummnet**
+backup/
+wandb/
+output/
