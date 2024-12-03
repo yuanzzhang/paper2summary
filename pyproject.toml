@@ -1,0 +1,9 @@
+[project]
+name = "paper2summary"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+dependencies = []
+
+[tool.uv]
+managed = false

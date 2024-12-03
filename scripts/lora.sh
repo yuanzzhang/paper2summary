@@ -1,5 +1,6 @@
 #!/bin/bash
 export CUDA_VISIBLE_DEVICES=4
+export PYTORCH_CUDA_ALLOC_CONF=backend:cudaMallocAsync
 export FSDP_CPU_RAM_EFFICIENT_LOADING=1
 
 MODEL_FLAGS="\
