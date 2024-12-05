@@ -33,7 +33,7 @@ def setup_testing(model_path):
         device_map="auto"
     )
 
-    dataset = load_scientific_papers("test[:10]")
+    dataset = load_scientific_papers("test[:1000]")
 
     return summarizer, dataset
 

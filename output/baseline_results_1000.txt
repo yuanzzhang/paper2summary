@@ -1,0 +1,7 @@
+Test Results (1000 samples):
+
+ROUGE F1 Scores:
+ROUGE1: 36.77
+ROUGE2: 7.55
+ROUGE3: 2.02
+ROUGEL: 19.42

@@ -1,5 +1,4 @@
 # Files
-*.zip
 *.log
 temp.py
 test.py
@@ -9,5 +8,6 @@ test.py
 __pycache__
 backup/
 wandb/
-output/
+output/lora/
 notebooks/
+scripts/
