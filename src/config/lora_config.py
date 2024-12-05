@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
 
+
 @dataclass
 class GlobalConfig:
     model_name: str = "meta-llama/Llama-3.2-1B-Instruct"
