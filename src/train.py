@@ -120,7 +120,6 @@ def main():
             callbacks=[LoggingCallback(logger, wandb)]
         )
 
-        # Train the model
         logger.info("Starting training...")
         trainer.train(resume_from_checkpoint=latest_checkpoint)
 
@@ -136,19 +135,13 @@ def main():
         raise
 
     finally:
-        # Clean up old checkpoints if needed
-        if os.path.exists(checkpoint_dir):
-            checkpoints = [d for d in os.listdir(checkpoint_dir) if d.startswith('checkpoint-')]
-            if len(checkpoints) > training_config.save_total_limit:
-                checkpoints.sort()
-                for checkpoint in checkpoints[:-training_config.save_total_limit]:
-                    checkpoint_path = os.path.join(checkpoint_dir, checkpoint)
-                    try:
-                        import shutil
-                        shutil.rmtree(checkpoint_path)
-                        logger.info(f"Cleaned up old checkpoint: {checkpoint}")
-                    except Exception as e:
-                        logger.warning(f"Failed to clean up checkpoint {checkpoint}: {str(e)}")
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.reset_peak_memory_stats()
+            torch.cuda.synchronize()
+            
+        if global_config.use_wandb:
+            wandb.finish()
 
 
 if __name__ == "__main__":

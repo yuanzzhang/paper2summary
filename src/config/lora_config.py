@@ -10,8 +10,8 @@ class GlobalConfig:
     project: str = "paper2summary"
 
     # Data splits
-    train_split: str = "train[:10%]"
-    val_split: str = "validation[:10%]"
+    train_split: str = "train"
+    val_split: str = "validation"
 
     # Context window
     padding: str = "max_length"
@@ -31,14 +31,14 @@ class LoRAConfig:
     target_modules: List[str] = field(default_factory=lambda: ["q_proj", "v_proj"])
     bias: str = "none"
     task_type: str = "CAUSAL_LM"
-    lora_dropout: float = 0.01
+    lora_dropout: float = 0.05
 
 
 @dataclass
 class TrainingConfig:
     learning_rate: float = 1e-4
     num_train_epochs: int = 1
-    gradient_accumulation_steps: int = 4
+    gradient_accumulation_steps: int = 8
     weight_decay: float = 5e-3
     warmup_ratio: float = 0.01
     bf16: bool = True
@@ -46,11 +46,10 @@ class TrainingConfig:
     # Checkpointing
     eval_strategy: str = "steps"
     save_strategy: str = "steps"
-    eval_steps: int = 20
-    save_steps: int = 500
+    eval_steps: int = 50
+    save_steps: int = 50
     save_total_limit: int = 2
-    logging_steps: int = 10
-    run_name: str = "lora"
+    logging_steps: int = 20
 
 
 @dataclass
