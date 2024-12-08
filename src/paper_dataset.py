@@ -18,7 +18,10 @@ def get_paper_dataset(config, tokenizer, split):
     dataset = load_scientific_papers(split)
 
     prompt = (
-        f"Summarize this scientific paper:\n{{article}}\n---\nSummary:\n"
+        "Extract the key findings and contributions from this scientific paper. "
+        "Write a summary of similar length to a standard abstract (~220 words):\n\n"
+        "Paper:\n{article}\n\n"
+        "Summary:\n"
     )
 
     def apply_prompt_template(sample):

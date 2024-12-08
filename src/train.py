@@ -59,7 +59,11 @@ def main():
         logger.info("Initializing tokenizer...")
         tokenizer = AutoTokenizer.from_pretrained(global_config.model_name, use_fast=True)
         tokenizer.pad_token = tokenizer.eos_token
-        
+
+        logger.info("Loading datasets...")
+        train_dataset = get_paper_dataset(global_config, tokenizer, global_config.train_split)
+        val_dataset  = get_paper_dataset(global_config, tokenizer, global_config.val_split)
+
         # Resume from existing checkpoint
         latest_checkpoint = None
         if os.path.exists(checkpoint_dir):
@@ -95,10 +99,6 @@ def main():
             f"{global_config.model_name} - "
             f"trainable params: {trainable_params:,d} || all params: {all_param:,d} || trainable%: {100 * trainable_params / all_param:.4f}"
         )
-
-        logger.info("Loading datasets...")
-        train_dataset = get_paper_dataset(global_config, tokenizer, global_config.train_split)
-        val_dataset  = get_paper_dataset(global_config, tokenizer, global_config.val_split)
 
         training_args = TrainingArguments(
             output_dir=checkpoint_dir,
