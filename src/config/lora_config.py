@@ -17,7 +17,7 @@ class GlobalConfig:
     padding: str = "max_length"
     truncation: bool = True
     context_length: int = 10182
-    summary_length: int = 350
+    summary_length: int = 300
 
     # Output paths
     log_file: str = "train.log"
@@ -38,7 +38,7 @@ class LoRAConfig:
 class TrainingConfig:
     learning_rate: float = 1e-4
     num_train_epochs: int = 1
-    gradient_accumulation_steps: int = 8
+    gradient_accumulation_steps: int = 16
     weight_decay: float = 5e-3
     warmup_ratio: float = 0.01
     bf16: bool = True
@@ -46,10 +46,11 @@ class TrainingConfig:
     # Checkpointing
     eval_strategy: str = "steps"
     save_strategy: str = "steps"
-    eval_steps: int = 50
-    save_steps: int = 50
+    eval_steps: int = 200
+    save_steps: int = 200
     save_total_limit: int = 2
     logging_steps: int = 20
+    run_name: str = "lora"
 
 
 @dataclass

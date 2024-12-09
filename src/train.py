@@ -41,7 +41,6 @@ def main():
     training_config = TrainingConfig()
     dataloader_config = DataLoaderConfig()
 
-    # Set visible GPU
     os.environ["CUDA_VISIBLE_DEVICES"] = global_config.device
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
