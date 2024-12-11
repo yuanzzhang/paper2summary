@@ -41,11 +41,17 @@ def main():
     training_config = TrainingConfig()
     dataloader_config = DataLoaderConfig()
 
+    if global_config.use_wandb:
+        config = {
+            "Global": global_config,
+            "LoRA": lora_config,
+            "Training": training_config,
+            "Data Loader": dataloader_config
+        }
+        wandb.init(project=global_config.project, config=config)
+
     os.environ["CUDA_VISIBLE_DEVICES"] = global_config.device
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
-
-    if global_config.use_wandb:
-        wandb.init(project=global_config.project)
 
     # Setup directories
     output_dir = global_config.output_dir
